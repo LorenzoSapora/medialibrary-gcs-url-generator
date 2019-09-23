@@ -21,7 +21,7 @@
         "psr-4": {
             "Terminalsio\\GcsUrlGenerator\\": "src"
         }
-    }
+    },
     "minimum-stability": "stable",
     "prefer-stable": "true"
 }
