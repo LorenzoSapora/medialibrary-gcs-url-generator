@@ -17,3 +17,19 @@ class GcsUrlGenerator extends BaseUrlGenerator
 		return $disk->url($this->getPathRelativeToRoot());
 	}
 }
+
+    /**
+     * Get the temporary url for a media item.
+     *
+     * @param \DateTimeInterface $expiration
+     * @param array $options
+     *
+     * @return string
+     */
+    public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
+    {
+        return $this
+            ->filesystemManager
+            ->disk($this->media->disk)
+            ->temporaryUrl($this->getPath(), $expiration, $options);
+    }
