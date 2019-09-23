@@ -1,6 +1,11 @@
 <?php
 namespace Terminalsio\GcsUrlGenerator;
 
+use DateTimeInterface;
+
+use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Contracts\Config\Repository as Config;
+
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\UrlGenerator\BaseUrlGenerator;
 
