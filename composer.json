@@ -1,0 +1,27 @@
+{
+    "name": "terminalsio/gcs-url-generator",
+    "description": "A laravel package for spatie medialibrary to extend UrlGenerator to support Google Cloud Platform",
+    "type": "library",
+    "require": {
+        "laravel/framework": "5.5.0",
+        "spatie/laravel-medialibrary": "^7.12",
+        "php": "^7.0",
+        "superbalist/laravel-google-cloud-storage": "^2.2"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/LorenzoSapora/GcsUrlGenerator",
+    "authors": [
+        {
+            "name": "Lorenzo Sapora",
+            "email": "lorenzo.sapora@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Terminalsio\\GcsUrlGenerator\\": "src"
+        }
+    }
+    "minimum-stability": "stable",
+    "prefer-stable": "true"
+}
