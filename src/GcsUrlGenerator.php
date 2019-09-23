@@ -16,7 +16,7 @@ class GcsUrlGenerator extends BaseUrlGenerator
 		$disk = Storage::disk($this->media->disk);
 		return $disk->url($this->getPathRelativeToRoot());
 	}
-}
+
 
     /**
      * Get the temporary url for a media item.
@@ -33,3 +33,4 @@ class GcsUrlGenerator extends BaseUrlGenerator
             ->disk($this->media->disk)
             ->temporaryUrl($this->getPath(), $expiration, $options);
     }
+}
