@@ -38,4 +38,19 @@ class GcsUrlGenerator extends BaseUrlGenerator
             ->disk($this->media->disk)
             ->temporaryUrl($this->getPath(), $expiration, $options);
     }
+
+    /**
+     * Get the url to the directory containing responsive images.
+     *
+     * @return string
+     */
+    public function getResponsiveImagesDirectoryUrl(): string
+    {
+        $url = $this->pathGenerator->getPathForResponsiveImages($this->media);
+        if ($root = config('filesystems.disks.'.$this->media->disk.'.root')) {
+            $url = $root.'/'.$url;
+        }
+        return config('medialibrary.gcs.domain').'/'.$url;
+    }
+
 }
