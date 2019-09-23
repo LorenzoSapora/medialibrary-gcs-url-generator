@@ -40,6 +40,16 @@ class GcsUrlGenerator extends BaseUrlGenerator
     }
 
     /**
+     * Get the url for the profile of a media item.
+     *
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->getPathRelativeToRoot();
+    }
+
+    /**
      * Get the url to the directory containing responsive images.
      *
      * @return string
