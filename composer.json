@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "laravel/framework": "^6",
-        "spatie/laravel-medialibrary": "^7",
+        "spatie/laravel-medialibrary": "^7|^8",
         "php": "^7.4",
         "superbalist/laravel-google-cloud-storage": "^2.2"
     },
