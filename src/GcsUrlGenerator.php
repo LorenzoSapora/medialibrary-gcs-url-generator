@@ -1,12 +1,13 @@
 <?php
-namespace Terminalsio\GcsUrlGenerator;
+namespace Spatie\MediaLibrary\Support\UrlGenerator;
 
 use DateTimeInterface;
+use Illuminate\Support\Str;
 
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Config\Repository as Config;
-
 use Illuminate\Support\Facades\Storage;
+
 use Spatie\MediaLibrary\UrlGenerator\BaseUrlGenerator;
 
 class GcsUrlGenerator extends BaseUrlGenerator
@@ -18,10 +19,12 @@ class GcsUrlGenerator extends BaseUrlGenerator
 	*/
 	public function getUrl(): string
 	{
-		$disk = Storage::disk($this->media->disk);
-		return $disk->url($this->getPathRelativeToRoot());
-	}
+        $url = $this->getDisk()->url($this->getPathRelativeToRoot());
 
+        $url = $this->versionUrl($url);
+
+        return $url;
+	}
 
     /**
      * Get the temporary url for a media item.
@@ -33,10 +36,7 @@ class GcsUrlGenerator extends BaseUrlGenerator
      */
     public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
     {
-        return $this
-            ->filesystemManager
-            ->disk($this->media->disk)
-            ->temporaryUrl($this->getPath(), $expiration, $options);
+        return $this->getDisk()->temporaryUrl($this->getPathRelativeToRoot(), $expiration, $options);
     }
 
     /**
@@ -46,7 +46,22 @@ class GcsUrlGenerator extends BaseUrlGenerator
      */
     public function getPath(): string
     {
-        return $this->getPathRelativeToRoot();
+        $adapter = $this->getDisk()->getAdapter();
+
+        $cachedAdapter = '\League\Flysystem\Cached\CachedAdapter';
+
+        if ($adapter instanceof $cachedAdapter) {
+            $adapter = $adapter->getAdapter();
+        }
+
+        $pathPrefix = $adapter->getPathPrefix();
+
+        return $pathPrefix.$this->getPathRelativeToRoot();
+    }
+
+    public function getBaseMediaDirectoryUrl()
+    {
+        return $this->getDisk()->url('/');
     }
 
     /**
@@ -56,11 +71,11 @@ class GcsUrlGenerator extends BaseUrlGenerator
      */
     public function getResponsiveImagesDirectoryUrl(): string
     {
-        $url = $this->pathGenerator->getPathForResponsiveImages($this->media);
-        if ($root = config('filesystems.disks.'.$this->media->disk.'.root')) {
-            $url = $root.'/'.$url;
-        }
-        return config('medialibrary.gcs.domain').'/'.$url;
+        $base = Str::finish($this->getBaseMediaDirectoryUrl(), '/');
+
+        $path = $this->pathGenerator->getPathForResponsiveImages($this->media);
+
+        return Str::finish(url($base.$path), '/');
     }
 
 }
