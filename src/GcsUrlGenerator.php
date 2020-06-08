@@ -1,5 +1,5 @@
 <?php
-namespace Spatie\MediaLibrary\Support\UrlGenerator;
+namespace Terminalsio\GcsUrlGenerator;
 
 use DateTimeInterface;
 use Illuminate\Support\Str;
