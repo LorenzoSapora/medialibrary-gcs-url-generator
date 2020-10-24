@@ -5,8 +5,7 @@
     "require": {
         "laravel/framework": "^8",
         "spatie/laravel-medialibrary": "^8",
-        "php": "^7.4",
-        "superbalist/laravel-google-cloud-storage": "^2.2"
+        "php": "^7.4"
     },
     "license": "MIT",
     "homepage": "https://github.com/LorenzoSapora/GcsUrlGenerator",
