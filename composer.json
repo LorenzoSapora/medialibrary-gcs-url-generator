@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "laravel/framework": "^8",
-        "spatie/laravel-medialibrary": "^9",
+        "spatie/laravel-medialibrary": "^10",
         "php": "^7.4|^8.1"
     },
     "license": "MIT",
