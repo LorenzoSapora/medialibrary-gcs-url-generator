@@ -3,8 +3,8 @@
     "description": "A laravel package for spatie medialibrary to extend UrlGenerator to support Google Cloud Platform",
     "type": "library",
     "require": {
-        "laravel/framework": "^9",
-        "spatie/laravel-medialibrary": "^10",
+        "laravel/framework": "^8|^9",
+        "spatie/laravel-medialibrary": "^8|^10",
         "php": "^7.4|^8"
     },
     "license": "MIT",
